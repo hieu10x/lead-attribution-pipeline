@@ -12,7 +12,7 @@
     "test": "vitest run",
     "test:unit": "vitest run test/unit",
     "test:integration": "vitest run test/integration",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types --strict-vars=false"
   },
   "author": "Hieu Tran",
   "license": "MIT",

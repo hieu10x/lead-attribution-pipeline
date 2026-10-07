@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { createSql } from "./db/client";
+import { hooks } from "./routes/hooks";
 
 const app = new Hono<{ Bindings: Env }>();
 
@@ -17,6 +18,8 @@ app.get("/health/db", async (c) => {
     c.executionCtx.waitUntil(sql.end());
   }
 });
+
+app.route("/hooks", hooks);
 
 export default {
   fetch: app.fetch,

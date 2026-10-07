@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lead-attribution-pipeline",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      // Replaced with the real Hyperdrive id at deploy time (M7)
+      "id": "00000000000000000000000000000000",
+      "localConnectionString": "postgres://lap:lap@localhost:54329/lap"
+    }
+  ],
+  "vars": {
+    // Outbound side effects (Meta CAPI, Slack) are simulated unless DRY_RUN is "false"
+    "DRY_RUN": "true"
+  },
+  "triggers": { "crons": [] }
+}

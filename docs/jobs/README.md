@@ -5,7 +5,7 @@ A test (added in M6) checks that every registered job has a description, so docs
 
 | Job | Trigger | Status |
 |---|---|---|
-| ingest | HTTP webhooks | planned (M1) |
+| [ingest](ingest.md) | HTTP webhooks | ✅ done |
 | process-events | cron, 5 min | planned (M3) |
 | crm-poll | cron, 15 min | planned (M4) |
 | capi-dispatch | cron, 5 min | planned (M5) |

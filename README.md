@@ -23,7 +23,7 @@ Cloudflare Workers (TypeScript, Hono, Zod) · Postgres via Hyperdrive · Vitest 
 
 ## Status
 - [x] **M0** Skeleton: Worker, local Postgres, migrations, tests, CI
-- [ ] **M1** Webhook ingestion with idempotency
+- [x] **M1** Webhook ingestion with idempotency ([how it works](docs/jobs/ingest.md))
 - [ ] **M2** Simulator + mock CRM API with chaos
 - [ ] **M3** Event processing: normalize, attribute, bill, leads
 - [ ] **M4** CRM polling (OAuth, pagination, rate limits)

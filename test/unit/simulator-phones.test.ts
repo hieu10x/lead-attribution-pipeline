@@ -8,7 +8,11 @@ describe("messyPhone", () => {
   it("preserves phone numbers", () => {
     const rng = createRng(42);
     const e164 = "+15125550134";
-    expect(normalizeUsPhone(messyPhone(e164, rng))).toEqual(e164);
+    // Each call picks a random format; 100 calls cover all 7 (the seed makes that hold every run).
+    for (let i = 0; i < 100; i++) {
+      const messy = messyPhone(e164, rng);
+      expect(normalizeUsPhone(messy), `round trip of "${messy}"`).toEqual(e164);
+    }
   });
 
   // A round trip alone can't tell "formatted" from "returned unchanged" (+1… normalizes to itself),

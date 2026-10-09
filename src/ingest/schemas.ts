@@ -36,6 +36,8 @@ const aiScreeningReport = z.object({
     call: z.object({
       id: z.string().min(1),
       customer: z.object({ number: z.string() }).optional(),
+      // The call platform passes its call id to the screener, which links the report to the call.
+      metadata: z.object({ platformCallId: z.string() }).partial().optional(),
     }),
     endedReason: z.string(),
     endedAt: z.iso.datetime({ offset: true }),

@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { app } from "../../src/index";
 import { MAX_BODY_BYTES } from "../../src/routes/hooks";
-import { DATABASE_URL, resetData, setupDb } from "./helpers";
+import { SECRET, ctx, envFor, resetData, setupDb } from "./helpers";
 
 let sql: Awaited<ReturnType<typeof setupDb>>;
 beforeAll(async () => {
@@ -13,11 +13,6 @@ beforeEach(async () => {
 afterAll(async () => {
   await sql.end();
 });
-
-const SECRET = "test-secret";
-const ctx = { waitUntil: (p: Promise<unknown>) => void p, passThroughOnException: () => {} } as unknown as ExecutionContext;
-const envFor = (connectionString = DATABASE_URL) =>
-  ({ HYPERDRIVE: { connectionString }, WEBHOOK_SECRET: SECRET, DRY_RUN: "true" }) as unknown as Env;
 
 function post(path: string, body: string | object, { secret = SECRET, env = envFor() } = {}) {
   const headers: Record<string, string> = { "content-type": "application/json" };

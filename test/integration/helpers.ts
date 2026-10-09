@@ -14,3 +14,9 @@ export async function setupDb() {
 export async function resetData(sql: ReturnType<typeof postgres>) {
   await sql`truncate raw_events, job_runs restart identity`;
 }
+
+// ── Calling the Worker in tests, with a fake Cloudflare environment ─────────────────────────────
+export const SECRET = "test-secret";
+export const ctx = { waitUntil: (p: Promise<unknown>) => void p, passThroughOnException: () => {} } as unknown as ExecutionContext;
+export const envFor = (connectionString = DATABASE_URL) =>
+  ({ HYPERDRIVE: { connectionString }, WEBHOOK_SECRET: SECRET, DRY_RUN: "true" }) as unknown as Env;
